@@ -6,7 +6,11 @@ module ActiveRecord
       def self.included(model)
         model.instance_eval do
           # This should never be user-assigned
-          attr_protected :uuid
+          begin
+            attr_protected :uuid
+          rescue Exception => e
+            puts "Got error #{e} when tried to protect :uuid from mass-assignament"
+          end
           # Validate on update since uuid won't exist yet on creation
           validates :uuid, :presence => true, :uniqueness => true, :on => :update
           before_create :assign_uuid
