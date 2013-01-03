@@ -10,8 +10,9 @@ ActiveRecord::Base.silence do
 
   ActiveRecord::Schema.define do
     create_table :users, force: true do |t|
-      t.integer  :uuid
-      t.string   :name
+      t.integer :id
+      t.string  :uuid
+      t.string  :name
     end
   end
 end
