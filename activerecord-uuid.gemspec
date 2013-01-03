@@ -18,9 +18,10 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  v = "= 3.2.8"
-  s.add_runtime_dependency "activerecord", v
-  s.add_runtime_dependency "railties", v
+  v = "~> 3.0"
+  s.add_dependency 'activerecord', v
+  s.add_dependency 'activesupport', v
+  s.add_dependency "railties", v
 
   s.add_development_dependency "rake"
   s.add_development_dependency "rspec"
