@@ -15,9 +15,13 @@ module ActiveRecord
     
       # Override the model's relation method to return our subclassed version.
       def relation
-        @relation = nil unless @relation.class <= uuid_relation_class
-        @relation ||= uuid_relation_class.new(self, arel_table)
-        super
+        relation = uuid_relation_class.new(self, arel_table)
+
+        if finder_needs_type_condition?
+          relation.where(type_condition).create_with(inheritance_column.to_sym => sti_name)
+        else
+          relation
+        end
       end
     end
   end

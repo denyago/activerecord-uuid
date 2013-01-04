@@ -16,4 +16,3 @@ ActiveRecord::Base.silence do
     end
   end
 end
-
